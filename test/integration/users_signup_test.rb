@@ -21,7 +21,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                        password_confirmation: "bar" } }
 
     assert_select 'div#error_explanation'
-    asser_select 'div.alert'
+    assert_select 'div.alert'
   end
 
   test "valid signup information" do
