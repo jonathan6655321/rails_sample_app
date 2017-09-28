@@ -13,3 +13,7 @@ $ heroku pg:reset DATABASE
 $ heroku run rails db:migrate
 $ heroku run rails db:seed
 $ heroku restart
+
+#Chapter 11:
+
+* in order to add paramaters to a url add a hash argument: edit_account_activation_url(@user.activation_token, email: @user.email)
