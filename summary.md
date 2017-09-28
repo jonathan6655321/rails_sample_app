@@ -6,3 +6,10 @@
 * `create!` is like `create` except it raises exceptions if invalid paramaters, instead of just returning false!
 
 * creating a boolean value in a model creates a `.name?` method
+
+$ rails test
+$ git push heroku
+$ heroku pg:reset DATABASE
+$ heroku run rails db:migrate
+$ heroku run rails db:seed
+$ heroku restart
