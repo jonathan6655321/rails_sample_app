@@ -21,3 +21,6 @@ $ heroku restart
 # Chapter 12:
 
 * user:references automatically creates a user_id column for  the microposts a belongs_to migration
+
+THIS IS NOT ENOUGH: need to create a `has_many :microposts` to user model in order to be able to create microposts in this way: `    @micropost = @user.microposts.build(content: "Lorem ipsum")
+`
