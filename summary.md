@@ -17,3 +17,7 @@ $ heroku restart
 #Chapter 11:
 
 * in order to add paramaters to a url add a hash argument: edit_account_activation_url(@user.activation_token, email: @user.email)
+
+# Chapter 12:
+
+* user:references automatically creates a user_id column for  the microposts a belongs_to migration
