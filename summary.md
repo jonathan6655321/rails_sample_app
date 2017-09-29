@@ -24,3 +24,7 @@ $ heroku restart
 
 THIS IS NOT ENOUGH: need to create a `has_many :microposts` to user model in order to be able to create microposts in this way: `    @micropost = @user.microposts.build(content: "Lorem ipsum")
 `
+
+* crazy context shit:
+`<%= will_paginate %>`
+This worked because, in the context of the Users controller, will_paginate assumes the existence of an instance variable called @users
