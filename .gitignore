@@ -26,3 +26,7 @@
 /spring/*.pid
 /.idea/*
 **.idea/
+
+
+# Ignore uploaded test images.
+/public/uploads
