@@ -2,12 +2,12 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent: :destroy
+  foreign_key: "follower_id",
+  dependent: :destroy
 
   has_many :passive_relationships, class_name: "Relationship",
-                                   foreign_key: "followed_id",
-                                   dependent: :destroy
+  foreign_key: "followed_id",
+  dependent: :destroy
 
   # active_relationships has all of Relationships in which
   # we are the follower. using through on this group gives us
@@ -18,9 +18,9 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true,
-            length: { maximum: 255 },
-            format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false }
+  length: { maximum: 255 },
+  format: { with: VALID_EMAIL_REGEX },
+  uniqueness: { case_sensitive: false }
 
   before_save :downcase_email
   before_create :create_activation_digest
@@ -33,7 +33,7 @@ class User < ApplicationRecord
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-               BCrypt::Engine.cost
+    BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -82,7 +82,10 @@ class User < ApplicationRecord
   end
 
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+                 WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                 OR user_id = :user_id", user_id: id)
   end
 
   def follow(other_user)
